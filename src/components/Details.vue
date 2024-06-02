@@ -84,13 +84,13 @@ onMounted(() => {
     padding: 5px 10px;
     text-decoration: none;
     border-radius: 10px;
-    background-color: #24b44f;
+    background-color: white;
     font-size: 20px;
-    color: #f4f4f4;
+    color: black;
   }
   
   .go-home-link:hover {
-    background-color: #06ff51;
+    background-color: black;
     color: #f4f4f4;
   }
 </style>

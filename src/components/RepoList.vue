@@ -28,7 +28,6 @@ onMounted(async () => {
 //   console.log('repos.value changed, recalculating totalItems...', totalItems)
 //   totalItems.value = repos.value.length
 // })
-//const { data, isLoading, isError } = useQuery(['repositories'], fetchRepositories);
 const filteredRepo = computed(() =>{
  return repos.value.filter(repo =>
     repo.name.toLowerCase().includes(searchQuery.value.toLowerCase())
@@ -42,19 +41,6 @@ const totalItems = computed(() => {
 const totalPages = computed(() => {
   return Math.ceil(totalItems.value / perPage.value)
 })
-// const pages = []
-// for (let i = 1; i <= totalPages.value; i++) {
-//   pages.push(i)
-// }
-
-// const pages = computed(() => {
-//   const pageArray = [];
-//   for (let i = 1; i <= totalPages.value; i++) {
-//     pageArray.push(i);
-//   }
-//   console.log('Computed pages:', pageArray); // Debugging: Log pages array
-//   return pageArray;
-// });
 const items = computed(() => {
   const firstIndex = (currentPage.value - 1) * perPage.value
   const lastIndex = perPage.value + firstIndex
@@ -66,19 +52,6 @@ const search = (event) => {
     currentPage.value = 1
 }
 
-// const prev = () => {
-//   if (currentPage.value > 1) {
-//     currentPage.value -= 1
-//   }
-// }
-// const next = () => {
-//   if (currentPage.value < totalPages.value) {
-//     currentPage.value += 1
-//   }
-// }
-// const goto = (page) => {
-//   currentPage.value = page
-// }
 </script>
 
 <template>
@@ -96,8 +69,8 @@ const search = (event) => {
       <ul>
         <li v-for="repo in items" :key="repo.id">
             <span>{{ repo.name.toUpperCase() }}</span>
-            <button>
-                <RouterLink class="infoBTN" :to="`/repository/${repo.id}`">DETAILS</RouterLink>
+            <button class="info-btn">
+                <RouterLink class="link" :to="`/repository/${repo.id}`">DETAILS</RouterLink>
             </button>
         </li>
       </ul>
@@ -113,10 +86,10 @@ const search = (event) => {
 <style scoped>
 @keyframes text-color-transition {
     from {
-      color: black; 
+      color: white; 
     }
     to {
-      color: white; 
+      color: black; 
     }
   }
   .header>h1 {
@@ -152,22 +125,26 @@ const search = (event) => {
 ul{
     list-style: none;
 }
-.infoBTN{
-    display: block;
-    background-color: #24b44f;
-    width: 100px;
-    border: 1px solid;
-    margin: 20px auto;
+.info-btn {
+  display: block;
+  background: none;
+  border: none;
+  padding: 10px;
+  margin: 20px auto;
 }
-.infoBTN:hover{
-    background-color: #06ff51 ;
-    color: #f4f4f4;
+
+.link {
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
 }
-.link{
-    color: white;
-}
-.link:hover{
-    color: #f4f4f4;
+
+.link:hover {
+  background-color: black;
+  color: white;
 }
 li{
     border: 2px solid;
