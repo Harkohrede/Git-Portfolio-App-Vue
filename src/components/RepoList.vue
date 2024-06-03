@@ -62,7 +62,7 @@ const search = (event) => {
       <input 
         type="text" 
         v-model="searchQuery" 
-        className="search-repo"
+        class="search-repo"
         placeholder="Search repositories..." 
         @input="search" 
       />
@@ -74,6 +74,9 @@ const search = (event) => {
             </button>
         </li>
       </ul>
+    <button class="info-btn">
+      <RouterLink class="link" to="/ErrorPage">404 Page</RouterLink>
+    </button>
       <PaginateComp 
         :currentPage="currentPage" 
         :totalPages="totalPages" 
@@ -120,7 +123,7 @@ const search = (event) => {
   }
   .search-repo:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: black;
   }  
 ul{
     list-style: none;
